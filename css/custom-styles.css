@@ -1,0 +1,17 @@
+body {
+    background: url('../img/winter-bacground.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.main {
+    background-color: hsl(0, 100%, 100%);
+}
+
+@media (min-width: 768px) {
+	#sidebar-wrapper {
+		width: 270px;
+	}
+}
