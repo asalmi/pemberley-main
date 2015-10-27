@@ -6,12 +6,24 @@ body {
     background-size: cover;
 }
 
-.main {
-    background-color: hsl(0, 100%, 100%);
+h1 {
+    font-size: 4em;
+	color: hsl(0, 0%, 100%);
 }
 
-@media (min-width: 768px) {
-	#sidebar-wrapper {
-		width: 270px;
-	}
+#main {
+    display: none;
+    background-color: hsl(0, 100%, 100%);
+    height: 200px;
+}
+
+#content {
+    display: none;
+}
+
+
+@media (min-width: 1200px) {
+    #sidebar-wrapper {
+        width: 270px;
+    }
 }

@@ -40,25 +40,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="index.html">Etusivu</a>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <a href="#">Tallit</a>
                 </li>
                 <li>
-                    <a href="#">Overview</a>
+                    <a href="#">Kennelit</a>
                 </li>
                 <li>
-                    <a href="#">Events</a>
+                    <a href="#">Villieläimet</a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">Päiväkirja</a>
                 </li>
                 <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
+                    <a href="#">Keskusaukio</a>
                 </li>
             </ul>
         </div>
@@ -68,11 +65,16 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <section class="row">
-                    <article class="col-lg-10 main">
-                        <h1>Simple Sidebar</h1>
-                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+					<article>
+						<h1>Virtuaalimaailma Pemberley</h1>
+					</article>
+                    <article class="col-lg-10" id="main">
+                        <div id="content">
+                            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas libero id sem finibus, at pharetra augue sollicitudin. Cras sed porttitor ipsum, vel bibendum enim. Cras rutrum auctor suscipit. In hac habitasse platea dictumst. Donec ultrices justo ut tempus condimentum. Etiam ac lacus sed diam iaculis imperdiet quis quis elit. Donec porttitor elementum nisi, sit amet venenatis velit mattis at. Donec nisi dolor, auctor quis ante vitae, tempor mollis arcu. Sed vitae pellentesque elit.</p>
+
+                            <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+                        </div>    
                     </article>
                 </section>
             </div>
@@ -93,6 +95,11 @@
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+        
+    $(document).ready(function() {
+        $('#main').animate({width:'toggle'},1000);
+        $('#content').delay(1100).fadeIn(500)
     });
     </script>
 
