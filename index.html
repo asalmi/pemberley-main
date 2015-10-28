@@ -16,7 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
-	<link href="css/custom-styles.css" rel="stylesheet">
+  <link href="css/custom-styles.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,22 +40,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.html">Etusivu</a>
+                    <a href="#etusivu" rel="tab">Etusivu</a>
                 </li>
                 <li>
-                    <a href="#">Tallit</a>
+                    <a href="#tallit" rel="tab">Tallit</a>
                 </li>
                 <li>
-                    <a href="#">Kennelit</a>
+                    <a href="/pemberley-main" rel="tab">Kennelit</a>
                 </li>
                 <li>
-                    <a href="#">Villieläimet</a>
+                    <a href="/pemberley-main" rel="tab">Villieläimet</a>
                 </li>
                 <li>
-                    <a href="#">Päiväkirja</a>
+                    <a href="/pemberley-main" rel="tab">Päiväkirja</a>
                 </li>
                 <li>
-                    <a href="#">Keskusaukio</a>
+                    <a href="/pemberley-main" rel="tab">Keskusaukio</a>
                 </li>
             </ul>
         </div>
@@ -65,16 +65,14 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <section class="row">
-					<article>
-						<h1>Virtuaalimaailma Pemberley</h1>
-					</article>
+          <article>
+            <h1>Lorem ipsum dolor sit amet</h1>
+          </article>
                     <article class="col-lg-10" id="main">
-                        <div id="content">
-                            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas libero id sem finibus, at pharetra augue sollicitudin. Cras sed porttitor ipsum, vel bibendum enim. Cras rutrum auctor suscipit. In hac habitasse platea dictumst. Donec ultrices justo ut tempus condimentum. Etiam ac lacus sed diam iaculis imperdiet quis quis elit. Donec porttitor elementum nisi, sit amet venenatis velit mattis at. Donec nisi dolor, auctor quis ante vitae, tempor mollis arcu. Sed vitae pellentesque elit.</p>
+                        
+                    <!-- content here!! -->
+                    
 
-                            <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
-                        </div>    
                     </article>
                 </section>
             </div>
@@ -90,17 +88,85 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+
     <!-- Menu Toggle Script -->
     <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
-        
-    $(document).ready(function() {
-        $('#main').animate({width:'toggle'},1000);
-        $('#content').delay(1100).fadeIn(500)
+
+    </script>
+
+    <script>
+
+    $(document).ready(function(){   //executed after the page has loaded
+
+        var contentOpen = false;
+
+        checkURL(); //check if the URL has a reference to a page and load it
+
+        $('sidebar-nav li a').click(function (e){    //traverse through all our navigation links..
+
+            checkURL(this.hash);    //.. and assign them a new onclick event, using their own hash as a parameter (#page1 for example)
+        });
+
+        setInterval("checkURL()",250);  //check for a change in the URL every 250 ms to detect if the history buttons have been used
+
     });
+
+    var lasturl=""; //here we store the current URL hash
+
+    function checkURL(hash)
+    {
+        if(!hash) hash=window.location.hash;    //if no parameter is provided, use the hash value from the current address
+
+        if(hash != lasturl) // if the hash value has changed
+        {
+            lasturl=hash;   //update the current hash
+            loadPage(hash); // and load the new page
+        }
+    }
+
+    function loadPage(url) {  //the function that loads pages via AJAX
+        url=url.replace('#','');    //strip the #page part of the hash and leave only the page number
+
+        $('#loading').css('visibility','visible');  //show the rotating gif animation
+
+        $.ajax({    //create an ajax request to load_page.php
+            type: "POST",
+            url: "load_page.php",
+            data: 'page='+url,  //with the page number as a parameter
+            dataType: "html",   //expect html to be returned
+            success: function(msg){
+
+                if(parseInt(msg)!=0)    //if no errors
+                {
+                    $('#main').empty().append(msg);
+
+                    if(!contentOpen) {
+                        $('#main').animate({width:'toggle'},1000);
+                        contentOpen = true;
+                    }
+
+                    $('#content').delay(500).fadeIn(500)
+                }
+            }
+
+        });
+
+    }
+
+    $.ajax({ url: 'content.html' ,success: function(html) {
+        $('#main').empty().append(html);
+        $('#main').animate({width:'toggle'},1000);
+        $('#content').delay(1000).fadeIn(500)
+        contentOpen = true;
+        }
+    });
+
+    //http://tutorialzine.com/2009/09/simple-ajax-website-jquery/
+
     </script>
 
 </body>
