@@ -65,15 +65,14 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <section class="row">
-          <article>
-            <h1>Lorem ipsum dolor sit amet</h1>
-          </article>
+                    <span class="header-title">
+                        <h1>Lorem ipsum dolor</h1>
+                        <small>Vivamus egestas libero id sem finibus</small>
+                        <hr />
+                    </span>
                     <article class="col-lg-10" id="main">
-                        
                     <!-- content here!! -->
-                    
-
-                    </article>
+                   </article>
                 </section>
             </div>
         </div>
@@ -101,8 +100,6 @@
     <script>
 
     $(document).ready(function(){   //executed after the page has loaded
-
-        var contentOpen = false;
 
         checkURL(); //check if the URL has a reference to a page and load it
 
@@ -142,14 +139,18 @@
 
                 if(parseInt(msg)!=0)    //if no errors
                 {
-                    $('#main').empty().append(msg);
+                    
+                    $('#main').empty().append(msg)
 
-                    if(!contentOpen) {
-                        $('#main').animate({width:'toggle'},1000);
-                        contentOpen = true;
+                    if(contentOpen == false) {
+                        $('#main').animate({width:'toggle'},800);
+                        $('#content').delay(800).fadeIn(200);
                     }
-
-                    $('#content').delay(500).fadeIn(500)
+                    if(contentOpen == true) {
+                        //$('#content').fadeIn(500);
+                        $('#content').delay(800).fadeIn(200);
+                     }
+                    
                 }
             }
 
@@ -159,8 +160,8 @@
 
     $.ajax({ url: 'content.html' ,success: function(html) {
         $('#main').empty().append(html);
-        $('#main').animate({width:'toggle'},1000);
-        $('#content').delay(1000).fadeIn(500)
+        $('#main').animate({width:'toggle'},800);
+        $('#content').delay(800).fadeIn(300);
         contentOpen = true;
         }
     });
