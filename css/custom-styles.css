@@ -29,6 +29,7 @@ hr {
     border-top: 1px dotted rgba(255,255,255,.6);
 }
 
+
 #main {
     display: none;
     background-color: hsl(0, 100%, 100%);
@@ -43,6 +44,42 @@ hr {
 
 #page-content-wrapper {
     padding-bottom: 0;
+}
+
+#sidebarContacts ul:before {
+    content: attr(title);
+    margin-left: -20px;
+    color: #999;
+    font-weight: bold;
+}
+
+#sidebarContacts ul {
+    color: #999;
+    list-style: none;
+    line-height: 1.7em;
+}
+
+#sidebarContacts {
+    display: block;
+    position: absolute;
+    top: 310px;
+}
+
+#backgroundAudio {
+    display: block;
+    position: absolute;
+    top: 510px;
+}
+
+#backgroundAudio audio {
+    width: 270px;
+}
+
+#backgroundAudio audio:before {
+    content: attr(title);
+    margin-left: -20px;
+    color: #999;
+    font-weight: bold;
 }
 
 @media (min-width: 1200px) {
