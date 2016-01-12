@@ -1,0 +1,120 @@
+<div id="content">
+  <h3>Subpage</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas libero id sem finibus, at pharetra augue sollicitudin. Cras sed porttitor ipsum, vel bibendum enim. Cras rutrum auctor suscipit. In hac habitasse platea dictumst. Donec ultrices justo ut tempus condimentum. Etiam ac lacus sed diam iaculis imperdiet quis quis elit. Donec porttitor elementum nisi, sit amet venenatis velit mattis at. Donec nisi dolor, auctor quis ante vitae, tempor mollis arcu. Sed vitae pellentesque elit.</p>
+
+    <div class="button-group filters-button-group btn-group" role="group">
+      <div class="form-group">
+      <label>Discpline</label>
+        <button class="button btn btn-default" data-filter=".dressage">dressage</button>
+        <button class="button btn btn-default" data-filter=".showjumping">showjumping</button>
+      </div>
+      <div class="form-group">
+        <label>Breed</label>
+        <button class="button btn btn-default" data-filter=".xx">xx</button>
+        <button class="button btn btn-default" data-filter=".fwb">fwb</button>
+      </div>
+      <div class="form-group">
+        <button class="button is-checked btn btn-default" data-filter="*">show all</button>
+      </div>  
+    </div>
+
+    <section class="shelf">
+      <div class="binder venus dressage sh" data-category="transition">
+        <span>
+          <ul>
+            <li>Lorem ipsum dolor</li>
+            <li><small>sh</small></li>
+          </ul>
+        </span>  
+      </div>
+      <div class="binder mars dressage fwb" data-category="transition">
+        <span>
+          <ul>
+            <li>Consectetur adipiscing</li>
+            <li>fwb</li>
+          </ul>
+        </span>  
+      </div>
+      <div class="binder venus showjumping fwb" data-category="transition">
+        <span>
+          <ul>
+            <li>Tempor Mollis</li>
+            <li>fwb</li>
+          </ul>
+        </span>   
+      </div>
+      <div class="binder mars showjumping xx" data-category="transition">
+        <span>
+          <ul>
+            <li>Pellentesque</li>
+            <li>xx</li>
+          </ul>
+        </span>    
+      </div>
+      <div class="binder mars dressage xx" data-category="transition">
+        <span>
+          <ul>
+            <li>Donec porttitor</li>
+            <li>xx</li>
+          </ul>
+        </span>  
+      </div>
+      <div class="binder mars showjumping ox" data-category="transition">
+        <span>
+          <ul>
+            <li>Ultrices</li>
+            <li>ox</li>
+          </ul>
+        </span>   
+      </div>
+      <div class="binder venus western ish" data-category="transition">
+        <span>
+          <ul>
+            <li>Cras sed</li>
+            <li>ish</li>
+          </ul>
+        </span>    
+      </div>                  
+    </section>
+
+    <script type="text/javascript">
+      $(document).ready(function(){ 
+        // init Isotope
+        var $grid = $('.shelf').isotope({
+          itemSelector: '.binder',
+          layoutMode: 'fitRows'
+        });
+        // filter functions
+        var filterFns = {
+          // show if number is greater than 50
+          numberGreaterThan50: function() {
+            var number = $(this).find('.number').text();
+            return parseInt( number, 10 ) > 50;
+          },
+          // show if name ends with -ium
+          ium: function() {
+            var name = $(this).find('.name').text();
+            return name.match( /ium$/ );
+          }
+        };
+        // bind filter button click
+        $('.filters-button-group').on( 'click', 'button', function() {
+          var filterValue = $( this ).attr('data-filter');
+          // use filterFn if matches value
+          filterValue = filterFns[ filterValue ] || filterValue;
+          $grid.isotope({ filter: filterValue });
+        });
+        // change is-checked class on buttons
+        $('.button-group').each( function( i, buttonGroup ) {
+          var $buttonGroup = $( buttonGroup );
+          $buttonGroup.on( 'click', 'button', function() {
+            $buttonGroup.find('.is-checked').removeClass('is-checked');
+            $( this ).addClass('is-checked');
+          });
+        });
+        
+      });
+
+    </script>
+    <!-- <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+</div>    

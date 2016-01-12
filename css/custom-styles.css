@@ -29,6 +29,23 @@ hr {
     border-top: 1px dotted rgba(255,255,255,.6);
 }
 
+article {
+    font-size: 1.1em;
+}
+
+.main-raise i {
+    font-size: 2em;
+    float: left;
+    margin-right: 10px;
+}
+
+.main-raise p {
+    font-size: 0.9em;
+}
+
+p {
+    line-height: 1.8em;
+}
 
 #main {
     display: none;
@@ -45,6 +62,51 @@ hr {
 #page-content-wrapper {
     padding-bottom: 0;
 }
+
+
+.binder {
+    background-color: rgb(225,225,225);
+    width: 60px;
+    height: 120px;
+    float: left;
+    margin: 2px;
+    line-height: 0.5em;
+}
+
+.binder span {
+    font-size: 0.7em;
+    transform: rotate(-90deg);
+    display: block;
+    transform-origin: center bottom;
+    width: 120px;
+    height: 60px;
+    padding: 5px;
+    text-align: center;
+    line-height: 1.4em;
+
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+}
+
+.binder ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-bottom: 0;
+}
+
+.mars {
+    background-color: #BDD2E8;
+}
+
+.venus {
+    background-color: #E8BDBD;
+}
+
+.shelf {
+    width: 600px;
+}
+
 
 #sidebarContacts ul:before {
     content: attr(title);
